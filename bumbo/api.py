@@ -19,6 +19,11 @@ class API:
         return wrapper
 
 
+    def default_response(self, response):
+        response.status_code = 404
+        response.text = "Not found."
+
+
     def handle_request(self, request):
         response = Response()
 
@@ -26,3 +31,6 @@ class API:
             if path == request.path:
                 handler(request, response)
                 return response
+
+        self.default_response(response)
+        return response
