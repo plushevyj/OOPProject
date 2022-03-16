@@ -37,7 +37,7 @@ def sum(request, response, num_1, num_2):
 @app.route("/book")
 class BooksResource:
     def get(self, req, resp):
-        resp.text = "Books Page"
+        resp.text = "Books Page\n"
 
     def post(self, req, resp):
-        resp.text = "Endpoint to create a book"
+        resp.text = "Endpoint to create a book\n"
