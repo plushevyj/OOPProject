@@ -13,11 +13,15 @@ class API:
 
 
     def route(self, path):
+        if path in self.routes:
+            raise AssertionError("Such route already exists.")
+
         def wrapper(handler):
             self.routes[path] = handler
             return handler
 
         return wrapper
+
 
 
     def default_response(self, response):
@@ -43,4 +47,3 @@ class API:
                 return handler, parse_result.named
 
         return None, None
-
