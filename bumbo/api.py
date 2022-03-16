@@ -11,18 +11,12 @@ class API:
         response = self.handle_request(request)
         return response(environ, start_response)
 
-
     def route(self, path):
-        if path in self.routes:
-            raise AssertionError("Such route already exists.")
-
+        assert path not in self.routes, "Such route already exists."
         def wrapper(handler):
             self.routes[path] = handler
             return handler
-
         return wrapper
-
-
 
     def default_response(self, response):
         response.status_code = 404
