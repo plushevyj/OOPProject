@@ -27,15 +27,13 @@ class API:
 
     def handle_request(self, request):
         response = Response()
-
-        handler = self.find_handler(request_path=request.path)
-
+        handler, kwargs = self.find_handler(request_path=request.path)
         if handler is not None:
-            handler(request, response)
+            handler(request, response, **kwargs)
         else:
             self.default_response(response)
-
         return response
+
 
 
     def find_handler(self, request_path):
