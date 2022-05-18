@@ -72,3 +72,12 @@ def test_class_based_handler_get(api, client):
 
     assert client.post("http://testserver/book").text == response_text
 
+
+def test_class_based_handler_not_allowed_method(api, client):
+    @api.route("/book")
+    class BookResource:
+        def post(self, req, resp):
+            resp.text = "yolo"
+
+    with pytest.raises(AttributeError):
+        client.get("http://testserver/book")
