@@ -5,17 +5,17 @@ from requests import Session as RequestsSession
 from wsgiadapter import WSGIAdapter as RequestsWSGIAdapter
 from jinja2 import Environment, FileSystemLoader
 import os
+from whitenoise import WhiteNoise
 
 
 class API:
-    def __init__(self, templates_dir="templates"):
+    def __init__(self, templates_dir="templates", static_dir="static"):
         self.routes = {}
-
         self.templates_env = Environment(
             loader=FileSystemLoader(os.path.abspath(templates_dir))
         )
-
         self.exception_handler = None
+        self.whitenoise = WhiteNoise(self.wsgi_app, root=static_dir)
 
     def __call__(self, environ, start_response):
         request = Request(environ)
