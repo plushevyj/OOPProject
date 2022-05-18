@@ -49,3 +49,15 @@ def test_default_404_response(client):
 
     assert response.status_code == 404
     assert response.text == "Not found."
+
+
+def test_class_based_handler_post(api, client):
+    response_text = "this is a post request"
+
+    @api.route("/book")
+    class BookResource:
+        def post(self, req, resp):
+            resp.text = response_text
+
+    assert client.post("http://testserver/book").text == response_text
+
