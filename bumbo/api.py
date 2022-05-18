@@ -18,14 +18,18 @@ class API:
         self.exception_handler = None
 
     def __call__(self, environ, start_response):
+        return self.wsgi_app(environ, start_response)
+
+    def wsgi_app(self, environ, start_response):
         request = Request(environ)
         response = self.handle_request(request)
         return response(environ, start_response)
 
+
     def add_route(self, path, handler):
         assert path not in self.routes, "Such route already exists."
-
         self.routes[path] = handler
+
 
     def route(self, path):
         assert path not in self.routes, "Such route already exists."
