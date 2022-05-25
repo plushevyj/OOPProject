@@ -10,7 +10,7 @@ from setuptools import find_packages, setup
 NAME = "bumbo_plyshevyj"
 DESCRIPTION = "Bumbo Python Web Framework built for learning purposes."
 EMAIL = "ischencko.kir@gmail.com"
-AUTHOR = "Jahongir Rahmonov"
+AUTHOR = "Kirill Plushevyj"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.0.1"
 
