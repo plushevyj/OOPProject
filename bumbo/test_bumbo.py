@@ -1,4 +1,5 @@
 import pytest
+from middleware import Middleware
 
 from api import API
 
