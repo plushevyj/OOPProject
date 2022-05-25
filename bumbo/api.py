@@ -10,7 +10,7 @@ from middleware import Middleware
 
 
 class API:
-    def __init__(self, templates_dir="templates", static_dir="static"):
+    def __init__(self, templates_dir="static", static_dir="static"):
         self.routes = {}
         self.templates_env = Environment(
             loader=FileSystemLoader(os.path.abspath(templates_dir))
@@ -20,6 +20,10 @@ class API:
         self.middleware = Middleware(self)
 
     def __call__(self, environ, start_response):
+        path_info = environ["PATH_INFO"]
+        if path_info.startswith("/static"):
+            environ["PATH_INFO"] = path_info[len("/static"):]
+            return self.whitenoise(environ, start_response)
         return self.middleware(environ, start_response)
 
     def wsgi_app(self, environ, start_response):
