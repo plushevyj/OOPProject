@@ -47,7 +47,7 @@ class BooksResource:
 @app.route("/template")
 def template_handler(req, resp):
     resp.body = app.template(
-        "index.html",
+        "/static/index.html",
         context={"name": "Bumbo", "title": "Best Framework"}
     ).encode()
 
