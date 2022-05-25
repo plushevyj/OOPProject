@@ -53,16 +53,18 @@ class API:
 
     def handle_request(self, request):
         response = Response()
-
-        handler, kwargs = self.find_handler(request_path=request.path)
-
+        handler_data, kwargs = self.find_handler(request_path=request.path)
         try:
-            if handler is not None:
+            if handler_data is not None:
+                handler = handler_data["handler"]
+                allowed_methods = handler_data["allowed_methods"]
                 if inspect.isclass(handler):
                     handler = getattr(handler(), request.method.lower(), None)
                     if handler is None:
                         raise AttributeError("Method not allowed", request.method)
-
+                else:
+                    if request.method.lower() not in allowed_methods:
+                        raise AttributeError("Method not allowed", request.method)
                 handler(request, response, **kwargs)
             else:
                 self.default_response(response)
@@ -71,7 +73,6 @@ class API:
                 raise e
             else:
                 self.exception_handler(request, response, e)
-
         return response
 
     def find_handler(self, request_path):
