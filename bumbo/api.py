@@ -6,6 +6,7 @@ from wsgiadapter import WSGIAdapter as RequestsWSGIAdapter
 from jinja2 import Environment, FileSystemLoader
 import os
 from whitenoise import WhiteNoise
+from middleware import Middleware
 
 
 class API:
@@ -16,6 +17,8 @@ class API:
         )
         self.exception_handler = None
         self.whitenoise = WhiteNoise(self.wsgi_app, root=static_dir)
+        self.middleware = Middleware(self)
+
 
     def __call__(self, environ, start_response):
         return self.whitenoise(environ, start_response)
