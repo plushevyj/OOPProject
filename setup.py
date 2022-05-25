@@ -7,7 +7,7 @@ import os
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = "bumbo"
+NAME = "bumbo_plyshevyj"
 DESCRIPTION = "Bumbo Python Web Framework built for learning purposes."
 EMAIL = "jrahmonov2@gmail.com"
 AUTHOR = "Jahongir Rahmonov"
