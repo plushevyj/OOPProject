@@ -4,6 +4,8 @@
 ![PyPI](https://img.shields.io/pypi/v/bumbo.svg?style=social&logo=appveyor)
 ![Discord](https://img.shields.io/discord/cnKkgPz2?style=social&logo=appveyor)
 
+Test application: https://github.com/plushevyj/TestBumboPlushevyj
+
 Bumbo is a Python web framework built for learning purposes.
 
 It's a WSGI framework and can be used with any WSGI application server such as Gunicorn.
