@@ -9,7 +9,7 @@ from setuptools import find_packages, setup
 # Package meta-data.
 NAME = "bumbo_plyshevyj"
 DESCRIPTION = "Bumbo Python Web Framework built for learning purposes."
-EMAIL = "jrahmonov2@gmail.com"
+EMAIL = "ischencko.kir@gmail.com"
 AUTHOR = "Jahongir Rahmonov"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.0.1"
