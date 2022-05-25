@@ -31,19 +31,21 @@ class API:
         response = self.handle_request(request)
         return response(environ, start_response)
 
-
-
-    def add_route(self, path, handler):
+    def add_route(self, path, handler, allowed_methods=None):
         assert path not in self.routes, "Such route already exists."
-        self.routes[path] = handler
 
+        if allowed_methods is None:
+            allowed_methods = ['get', 'post', 'put', 'patch', 'delete', 'options']
 
-    def route(self, path):
-        assert path not in self.routes, "Such route already exists."
+        self.routes[path] = {"handler": handler, "allowed_methods": allowed_methods}
+
+    def route(self, path, allowed_methods=None):
         def wrapper(handler):
-            self.routes[path] = handler
+            self.add_route(path, handler, allowed_methods)
             return handler
+
         return wrapper
+
 
     def default_response(self, response):
         response.status_code = 404
