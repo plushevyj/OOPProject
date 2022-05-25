@@ -6,8 +6,8 @@ from wsgiadapter import WSGIAdapter as RequestsWSGIAdapter
 from jinja2 import Environment, FileSystemLoader
 import os
 from whitenoise import WhiteNoise
-from middleware import Middleware
-from response import Response
+from .middleware import Middleware
+from .response import Response
 
 
 class API:
