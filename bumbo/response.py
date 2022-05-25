@@ -11,6 +11,7 @@ class Response:
         self.status_code = 200
 
     def __call__(self, environ, start_response):
+        self.set_body_and_content_type()
         response = WebObResponse(
             body=self.body, content_type=self.content_type, status=self.status_code
         )
